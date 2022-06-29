@@ -1,0 +1,38 @@
+﻿@model IEnumerable<PaymentType>
+
+@{
+    ViewData["Title"] = "Payment Type";
+}
+
+<h1>Payment Type</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table sorting" id="PaymentTypes">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Name
+            </th>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr id="id_@item.Id">
+                <td>
+                    @item.Id
+                </td>
+                <td>
+                    @item.TypeName
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a class="confirmDeletion" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

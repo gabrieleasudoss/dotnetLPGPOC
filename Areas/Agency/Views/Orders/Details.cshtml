@@ -1,0 +1,42 @@
+﻿@model List<OrderDetails>
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <dl class="row">
+        @foreach (var item in Model)
+    {
+            <dt class="col-sm-2">
+                Product ID
+            </dt>
+            <dd class="col-sm-10">
+                @item.ProductId
+            </dd>
+            <dt class="col-sm-2">
+                Quantity
+            </dt>
+            <dd class="col-sm-10">
+                @item.Quantity
+            </dd>
+            <dt class="col-sm-2">
+                Unit Price
+            </dt>
+            <dd class="col-sm-10">
+                @item.UnitPrice
+            </dd>
+            <dt class="col-sm-2">
+                Total Price
+            </dt>
+            <dd class="col-sm-10">
+                @item.TotalPrice
+            </dd>
+        }
+        </dl>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

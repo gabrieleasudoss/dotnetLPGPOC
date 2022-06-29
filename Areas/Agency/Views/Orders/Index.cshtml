@@ -1,0 +1,97 @@
+﻿@model OrderViewModel
+
+@{
+    ViewData["Title"] = "Order Details";
+}
+
+<h1>Order Details</h1>
+
+<form asp-action="Index">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Id" class="control-label">Search Order</label>
+        <input asp-for="Id" class="form-control" />
+        <span asp-validation-for="Id" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Search" class="btn btn-primary" />
+    </div>
+</form>
+
+
+<form asp-action="Index">
+    <div class="form-group">
+        <input type="submit" value="Reset" class="btn btn-primary" />
+    </div>
+</form>
+
+<table class="table sorting" id="orders">
+    <thead>
+        <tr>
+            <th>
+                Date
+            </th>
+            <th>
+                Order ID
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Customer Address
+            </th>
+            <th>
+                E-mail
+            </th>
+            <th>
+                Phone Number
+            </th>
+            <th>
+                Order Status
+            </th>
+            <th>
+                Delivery Agent Name
+            </th>
+            <th>
+                Delivery Date
+            </th>
+<tbody>
+        @for (int i = 0; i < Model.Orders.Count(); i++)
+        {
+            <tr>
+                <td>
+                    @Html.Label(Model.Orders[i].OrderDate.ToString())
+                </td>
+                <td>
+                    @Html.Label(Model.Orders[i].Id.ToString())
+                </td>
+                <td>
+                    @Html.Label(Model.Customers[i].FirstName.ToString())
+                </td>
+                <td>
+                    @Html.Label(Model.Orders[i].DeliveryAddress.ToString())
+                </td>
+                <td>
+                    @Model.Customers[i].Email.ToString()
+                </td>
+                <td>
+                    @Html.Label(Model.Customers[i].PhoneNumber.ToString())
+                </td>
+                <td>
+                    @Html.Label(Model.OrderStatusCatalogs[i].StatusName.ToString())
+                </td>
+                <td>
+                    @Html.Label(Model.Orders[i].DeliveryAgent.ToString())
+                </td>
+                <td>
+                    @Html.Label(Model.Orders[i].DeliveryDate.ToString())
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@Model.Orders[i].Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@Model.Orders[i].Id">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

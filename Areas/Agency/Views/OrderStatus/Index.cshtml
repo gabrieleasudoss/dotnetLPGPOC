@@ -1,0 +1,38 @@
+﻿@model IEnumerable<OrderStatusCatalog>
+
+@{
+    ViewData["Title"] = "Order Status Catalog";
+}
+
+<h1>Order Status Catalog</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table sorting" id="OrderStatusCatalogs">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Status
+            </th>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr id="id_@item.Id">
+                <td>
+                    @item.Id
+                </td>
+                <td>
+                    @item.StatusName
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a class="confirmDeletion" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

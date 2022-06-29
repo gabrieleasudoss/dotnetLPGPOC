@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Inventory>
+
+@{
+    ViewData["Title"] = "Inventories";
+}
+
+<h1>Inventories</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table sorting" id="inventories">
+    <thead>
+        <tr>
+            <th>
+                Product ID
+            </th>
+            <th>
+                In Stock
+            </th>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr id="id_@item.ProductId">
+                <td>
+                    @item.ProductId
+                </td>
+                <td>
+                    @item.InStock
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a class="confirmDeletion" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
